@@ -10,6 +10,7 @@ import android.widget.*
 import android.widget.SearchView.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.MainActivityBinding
@@ -197,6 +198,56 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.crear -> abrirCrear()
+            R.id.borrar -> borrar()
+            R.id.cerrar -> System.exit(0)
+            else -> return super.onOptionsItemSelected(item)
+        }
+        return true
+    }
+
+    fun borrar(){
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Borrar contenido")
+        builder.setMessage("¿Estás seguro de borrar todos los datos?")
+        builder.setIcon(R.drawable.ic_delete)
+
+        builder.setPositiveButton("Confirmar") { dialog, which ->
+            conexion.borrarTodo()
+            lista.clear()
+            miAdapter.notifyDataSetChanged()
+            binding.tvNo.visibility = View.VISIBLE
+        }
+
+        builder.setNegativeButton("Cancelar") { dialog, which ->
+            dialog.dismiss()
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+
+        val buttonPositive = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+        buttonPositive.setTextColor(ContextCompat.getColor(this, R.color.green))
+
+        val buttonNegative = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+        buttonNegative.setTextColor(ContextCompat.getColor(this, R.color.red))
+
+
+    }
+
+    fun abrirCrear(){
+
+        startActivity(Intent(this, ActivityCrear::class.java))
+    }
+
     fun spinners() {
 
         var listaVisto = listOf<String>("TODO", "VISTO", "NO VISTO", "VIENDOLO")
@@ -204,6 +255,8 @@ class MainActivity : AppCompatActivity() {
         spinner1 = binding.spVisto
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, listaVisto)
         spinner1.adapter = adapter
+
+
 
 // escuchar selección del Spinner
         /*spinner1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
