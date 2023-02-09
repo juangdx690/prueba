@@ -12,43 +12,44 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.RowManusBinding
 
+
 class AnimesViewHolder(vista: View) : RecyclerView.ViewHolder(vista) {
     //  private val miBinding=UsuariosLayoutBinding.bind(vista)
     private val miBinding = RowManusBinding.bind(vista)
     fun inflar(
         anime: Animes,
-        onItemDelete:(Int)->Unit,
-        onItemUpdate:(Animes)->Unit)
-     {
+        onItemDelete: (Int) -> Unit,
+        onItemUpdate: (Animes) -> Unit
+    ) {
 
-         miBinding.btnBorrar.setOnClickListener{
-             onItemDelete(adapterPosition)
-         }
+        miBinding.btnBorrar.setOnClickListener {
+            onItemDelete(adapterPosition)
+        }
 
-         miBinding.btnEditar.setOnClickListener{
-             onItemUpdate(anime)
-         }
+        miBinding.btnEditar.setOnClickListener {
+            onItemUpdate(anime)
+        }
 
-         itemView.setOnClickListener{
+        itemView.setOnClickListener {
 
-             val intent = Intent(itemView.context, ItemActivity::class.java)
-             intent.putExtra("TITULO", anime.titulo)
-             intent.putExtra("CATEGORIA", anime.categoria)
-             intent.putExtra("VISTO", anime.visto)
-             intent.putExtra("ESTRELLAS", anime.estrellas)
-             intent.putExtra("DESCRIPCION", anime.descripcion)
-             intent.putExtra("IMAGEN", anime.imagen)
-             ContextCompat.startActivity(itemView.context, intent, null)
+            val intent = Intent(itemView.context, ItemActivity::class.java)
+            intent.putExtra("TITULO", anime.titulo)
+            intent.putExtra("CATEGORIA", anime.categoria)
+            intent.putExtra("VISTO", anime.visto)
+            intent.putExtra("ESTRELLAS", anime.estrellas)
+            intent.putExtra("DESCRIPCION", anime.descripcion)
+            intent.putExtra("IMAGEN", anime.imagen)
+            ContextCompat.startActivity(itemView.context, intent, null)
 
-         }
+        }
 
-        if (anime.titulo.length < 25){
+        if (anime.titulo.length < 25) {
 
             miBinding.tvTitle.text = anime.titulo
 
-        }else{
+        } else {
 
-            miBinding.tvTitle.text = anime.titulo.take(23)+" ..."
+            miBinding.tvTitle.text = anime.titulo.take(23) + " ..."
             miBinding.tvTitle.maxLines = 2
 
         }
@@ -56,7 +57,7 @@ class AnimesViewHolder(vista: View) : RecyclerView.ViewHolder(vista) {
         miBinding.tvCategory.text = anime.categoria
         val descripcion = anime.descripcion
         val descripcionLimited = descripcion.split(" ").take(12).joinToString(" ")
-        miBinding.tvDescription.text = descripcionLimited+" ..."
+        miBinding.tvDescription.text = descripcionLimited + " ..."
         miBinding.tvNumEstrellas.text = anime.estrellas.toString()
         miBinding.tvStars.rating = anime.estrellas
         val byteArray = anime.imagen // tu array de bytes
@@ -64,22 +65,59 @@ class AnimesViewHolder(vista: View) : RecyclerView.ViewHolder(vista) {
         miBinding.ivMain.setImageBitmap(bitmap)
         miBinding.tvVisto.text = anime.visto
 
-        if (anime.visto.equals("Visto")){
+        if (anime.visto.equals("Visto")) {
 
             miBinding.tvVisto.setTextColor(ContextCompat.getColor(itemView.context, R.color.green))
         }
-        if (anime.visto.equals("No visto")){
+        if (anime.visto.equals("No visto")) {
 
             miBinding.tvVisto.setTextColor(ContextCompat.getColor(itemView.context, R.color.red))
         }
-        if (anime.visto.equals("Viendolo")){
+        if (anime.visto.equals("Viendolo")) {
 
-            miBinding.tvVisto.setTextColor(ContextCompat.getColor(itemView.context, R.color.naranjaBrillante))
+            miBinding.tvVisto.setTextColor(
+                ContextCompat.getColor(
+                    itemView.context,
+                    R.color.naranjaBrillante
+                )
+            )
+        }
+
+        var numStar = miBinding.tvStars.rating
+
+        if (numStar >= 4.0f) {
+
+            miBinding.tvNumEstrellas.setTextColor(
+                ContextCompat.getColor(
+                    itemView.context,
+                    R.color.green
+                )
+            )
+
+        } else if (numStar >= 1.5f) {
+
+            miBinding.tvNumEstrellas.setTextColor(
+                ContextCompat.getColor(
+                    itemView.context,
+                    R.color.naranjaBrillante
+                )
+            )
+
+        } else {
+
+
+            miBinding.tvNumEstrellas.setTextColor(
+                ContextCompat.getColor(
+                    itemView.context,
+                    R.color.red
+                )
+            )
+
+
         }
 
 
     }
-
 
 
 }

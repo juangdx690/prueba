@@ -5,97 +5,153 @@
     android:id="@+id/etEstrellas"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityCrear">
+    tools:context=".ActivityCrear"
+    android:background="@color/grisClaro">
 
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Titulo"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="276dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="70dp"
+        android:hint="Titulo"
+        android:textColorHint="#A7A7A7"
+        app:boxStrokeColor="#EAEAEE"
+        app:counterEnabled="true"
+        app:counterMaxLength="40"
+        app:endIconMode="clear_text"
+        app:helperText="Required*"
+        app:helperTextTextColor="@color/red"
+        app:hintTextColor="@color/colorTextField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/iconotit">
 
-        <RadioButton
-            android:id="@+id/cbVisto"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etTitulo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Visto" />
+            android:layout_height="55dp"
+            android:inputType="textMultiLine"
+            android:maxLength="50"
+            android:textColor="#5B5B5B"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:ignore="TouchTargetSizeCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <RadioButton
-            android:id="@+id/cbViendolo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Viendolo" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Visto"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="276dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginEnd="70dp"
+        android:hint="¿Está visto?"
+        android:textColorHint="#A7A7A7"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="#EAEAEE"
+        app:helperText="Required*"
+        app:helperTextTextColor="@color/red"
+        app:hintTextColor="@color/colorTextField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/video">
 
-        <RadioButton
-            android:id="@+id/cbNovisto"
+        <AutoCompleteTextView
+            android:id="@+id/autocompleteVisto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="No visto" />
-    </RadioGroup>
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Descripcion"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="276dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="70dp"
+        android:hint="Descripcion"
+        android:textColorHint="#A7A7A7"
+        app:boxStrokeColor="#EAEAEE"
+        app:counterEnabled="true"
+        app:counterMaxLength="735"
+        app:endIconMode="clear_text"
+        app:helperText="Required*"
+        app:helperTextTextColor="@color/red"
+        app:hintTextColor="@color/colorTextField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/descripcion">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:inputType="textMultiLine"
+            android:maxLength="735"
+            android:textColor="#5B5B5B"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:ignore="TouchTargetSizeCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Categoria"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="276dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="360dp"
+        android:layout_marginEnd="70dp"
+        android:hint="Categoría"
+        android:textColorHint="#A7A7A7"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="#EAEAEE"
+        app:helperText="Required*"
+        app:helperTextTextColor="@color/red"
+        app:hintTextColor="@color/colorTextField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/pokemon">
+
+        <AutoCompleteTextView
+            android:id="@+id/autocompleteCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <RatingBar
         android:id="@+id/etStar"
-        style="@android:style/Widget.DeviceDefault.RatingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-
-        android:rating="0"
+        style="@android:style/Widget.Holo.Light.RatingBar"
+        android:layout_width="235dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="470dp"
+        android:layout_marginEnd="130dp"
+        android:numStars="5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDescripcion" />
-
-    <EditText
-        android:id="@+id/etTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:ems="10"
-        android:hint="Titulo"
-        android:inputType="textPersonName"
-        app:flow_verticalBias="2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.245"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etCategoria"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:hint="Categoria"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTitulo" />
-
-    <EditText
-        android:id="@+id/etDescripcion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:hint="Descripción"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCategoria" />
 
     <Button
         android:id="@+id/btnCrear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="570dp"
         android:backgroundTint="#009688"
         android:text="Guardar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDescripcion" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnVolver"
@@ -111,10 +167,11 @@
         android:id="@+id/imageView"
         android:layout_width="106dp"
         android:layout_height="77dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="450dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etStar"
+        app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/classrom" />
 </androidx.constraintlayout.widget.ConstraintLayout>
