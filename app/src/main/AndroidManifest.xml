@@ -15,6 +15,7 @@
         tools:targetApi="31">
 
         <activity
+            android:screenOrientation="portrait"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -23,8 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityCrear" />
-        <activity android:name=".ItemActivity" />
+        <activity android:name=".ActivityCrear"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ItemActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -45,7 +45,7 @@ class ActivityCrear : AppCompatActivity() {
 
 
         binding.imageView.setImageResource(R.drawable.nophoto)
-datosNoVacios()
+        datosNoVacios()
         autocomplete()
         // cargarLista()
         cogerDatos()
@@ -68,14 +68,14 @@ datosNoVacios()
     }
 
 
-    fun datosNoVacios(){
+    fun datosNoVacios() {
 
         binding.etTitulo.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 val input = s.toString()
                 var found = false
 
-                if (input.isNotEmpty()){
+                if (input.isNotEmpty()) {
 
                     binding.Titulo.error = null
 
@@ -91,7 +91,7 @@ datosNoVacios()
                 val input = s.toString()
                 var found = false
 
-                if (input.isNotEmpty()){
+                if (input.isNotEmpty()) {
 
                     binding.Descripcion.error = null
 
@@ -103,7 +103,6 @@ datosNoVacios()
         })
 
     }
-
 
 
     fun autocomplete() {
@@ -200,7 +199,6 @@ datosNoVacios()
             val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
             binding.imageView.setImageBitmap(bitmap)
 
-
         }
     }
 
@@ -223,38 +221,62 @@ datosNoVacios()
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
             val byteArray = stream.toByteArray()
 
+            var listaCategoria = listOf<String>("Anime", "Manga")
+            var listaVisto = listOf<String>("Visto", "No visto", "Viendolo")
+
+            var txt = binding.autocompleteCategoria.text
+            var foundCategoria = false
+            for (item in listaCategoria) {
+                if (item.equals(txt)) {
+                    foundCategoria = true
+                    break
+                }
+
+            }
+
+            var txt2 = binding.autocompleteVisto.text
+            var foundVisto = false
+            for (item in listaVisto) {
+                if (item.equals(txt2)) {
+                    foundVisto = true
+                    break
+                }
+            }
 
             if (binding.etTitulo.text!!.isEmpty()) {
 
-               binding.Titulo.error = "El titulo no puede estar vacio"
+                binding.Titulo.error = "El titulo no puede estar vacio"
 
 
             } else if (binding.etDescripcion.text!!.isEmpty()) {
 
                 binding.Descripcion.error = "La descripcion no puede estar vacia"
 
-            } else if(binding.autocompleteVisto.text.isEmpty()){
+            } else if (binding.autocompleteVisto.text.isEmpty()) {
 
 
                 binding.Visto.error = "Este campo no puede estar vacio"
 
-            }else if(binding.autocompleteCategoria.text.isEmpty()){
-
-                binding.Categoria.error = "Este campo no puede estar vacio"
-
-            }else{
-
+            } else if (binding.autocompleteCategoria.text.isEmpty()) {
+                binding.Visto.error = "Este campo no puede estar vacio."
+            } else  {
                 if (!editar) {
-                    val anime = Animes(1, titulo, descripcion, categoria, estrellas, byteArray, visto)
+                    val anime =
+                        Animes(1, titulo, descripcion, categoria, estrellas, byteArray, visto)
                     if (conexion.crear(anime) > -1) {
                         finish()
                     } else {
-                        Toast.makeText(this, "No se pudo guardar el registro!!!", Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            this,
+                            "No se pudo guardar el registro!!!",
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
                     }
 
                 } else {
-                    val anime = Animes(1, titulo, descripcion, categoria, estrellas, byteArray, visto)
+                    val anime =
+                        Animes(1, titulo, descripcion, categoria, estrellas, byteArray, visto)
                     if (conexion.update(anime) > -1) {
                         finish()
                     } else {
@@ -263,6 +285,7 @@ datosNoVacios()
                     }
 
                 }
+
 
             }
 
